@@ -14,6 +14,9 @@ dependencies:
   - netCDF4
   - dask
   - scipy
+  - requests
+  - beautifulsoup4
+  - statsmodels
   - pip
   - pip:
       - tensorflow
