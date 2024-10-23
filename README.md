@@ -6,6 +6,12 @@ The dynamics of the Arctic Ocean environment are complex and variable. [The Inte
 
 Accurate forecasts of buoy positions would be useful for a number of reasons. Imaging the features buoys are deployed on is of great interest to researchers of various disciplines. Recent developments in satellite imaging technology and the industry surrounding the practice have allowed researchers unprecedented access to high-resolution, on-demand imagery products. However, these satellite imaging frameworks necessarily operate under the restrictions inherent to orbital intstrumentation - namely the need for advance (>24hrs) determination of areas of interest for instruments to target. Without an accurate prediction of where features of interest coincident with buoy deployments will be, accurate satellite imaging regresses to guesswork. Failed captures are not only monetarily expensive, but also temporally expensive as icebergs are inherently transient, impermanent features. Furthermore, as climate change continues to affect the distribution and longevity of sea ice in the Arctic, ship traffic has increased dramatically. Forecasts of iceberg positions would provide ship operators with information that could serve to avoid collisions or other hazardous situations. Finally, predictions of buoy positions would contribute to the understanding of the force-balance dynamics that affect icebergs of various sizes and origins.
 
+## Data used in this project
+### Buoy data
+The IABP oeprates a network of ~100 buoys in the Arctic Ocean. To use as training data, buoys that reported in 2024 were selected and their datastreams interpolated with MERRA-2 weather reanalysis data. This project also queries the IABP API to collect real-time buoy positions for use as initial conditions for prediction.
+
+### Reanalyses
+
 ## Using this repository
 The contents of this repository can be used to collect, clean, and process geospatial data for use in training ML algorithms to predict buoy motion. 
 Use of resources in the following order is suggested:
