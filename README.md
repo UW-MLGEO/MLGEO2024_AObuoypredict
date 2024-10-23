@@ -11,6 +11,10 @@ Accurate forecasts of buoy positions would be useful for a number of reasons. Im
 The IABP oeprates a network of ~100 buoys in the Arctic Ocean. To use as training data, buoys that reported in 2024 were selected and their datastreams interpolated with MERRA-2 weather reanalysis data. This project also queries the IABP API to collect real-time buoy positions for use as initial conditions for prediction.
 
 ### Reanalyses
+NCEP ftp://ftp.cdc.noaa.gov/Datasets/ncep/
+
+### Forecasts
+GFS ftp://ftp.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/
 
 ## Using this repository
 The contents of this repository can be used to collect, clean, and process geospatial data for use in training ML algorithms to predict buoy motion. 
