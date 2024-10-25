@@ -2,6 +2,7 @@
 Autumn 2024 project to predict buoy positions in the Arctic Ocean
 
 **Contributors**: Ben Cohen, Rudra Singh, Jinsu Jang, Erin Davis
+
 Contact: bencohen@uw.edu
 
 ## Motivation
