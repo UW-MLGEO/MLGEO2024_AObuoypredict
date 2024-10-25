@@ -1,7 +1,7 @@
 # MLGEO2024_AObuoypredict
 Autumn 2024 project to predict buoy positions in the Arctic Ocean
 
-**Contributors**: Ben Cohen, Rudra Singh, Jinsu, Erin Davis
+**Contributors**: Ben Cohen, Rudra Singh, Jinsu Jang, Erin Davis
 
 ## Motivation
 The dynamics of the Arctic Ocean environment are complex and variable. [The International Arctic Buoy Programme (IABP)](https://iabp.apl.uw.edu/) is a collaborative effort to deploy and maintain a network of drifting buoys in the Arctic Ocean to collect oceanographic and meteorological data that support research for a variety of applications. While the buoys can provide real-time and historical information on their location and in-situ environment, predicting the motion of these drifting buoys is challenging. 
@@ -48,6 +48,5 @@ Your environment is now ready and activated!
 Scripts shoud be used in the following order:
 1. download_data.ipynb
 2. data_cleaning.ipynb
-3. dimensionality_reduction.ipynb
-4. prepare_ai_ready_data.ipynb
-5. eda.ipynb
+3. prepare_ai_ready_data.ipynb
+4. eda.ipynb
