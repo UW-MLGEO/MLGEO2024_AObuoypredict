@@ -49,14 +49,22 @@ Your environment is now ready and activated!
 ### Collecting and manipulating project data
 Scripts shoud be used in the following order:
 1. download_data.ipynb
+
    -This notebook handles downloading data of various types for this project, including: past buoy data, weather reanalyses, weather forecasts, and current buoy positions.
+
    -Data will be stored in the data/raw folder.
 2. data_cleaning.ipynb
+
    -This notebook cleans the buoy data for use in later steps.
+
    -The script removes rows with missing values, transmissions outside of the study area of interest, standardizes the latitude and longitude fields, and removes buoy tracks with less than 50 rows (these are assumed to have failed or been destroyed)
+
    -The resulting files will be stored in the data/cleaned directory.
 3. prepare_ai_ready_data.ipynb
+
    -This notebook manipulates the buoy and weather data for use in model training and prediction.
+
    -The weather reanalyses are converted into numpy/pandas arrays and encoded with the proper values for day of year, etc.
 4. eda.ipynb
+
    -This notebook performs some exploratory data analysis on the buoy and weather data to provide insights into trends, correlations, and potential data issues.
