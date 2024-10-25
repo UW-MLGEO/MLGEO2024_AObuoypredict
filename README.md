@@ -48,6 +48,5 @@ Your environment is now ready and activated!
 Scripts shoud be used in the following order:
 1. download_data.ipynb
 2. data_cleaning.ipynb
-3. dimensionality_reduction.ipynb
-4. prepare_ai_ready_data.ipynb
-5. eda.ipynb
+3. prepare_ai_ready_data.ipynb
+4. eda.ipynb
