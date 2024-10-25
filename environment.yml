@@ -18,6 +18,11 @@ dependencies:
   - beautifulsoup4
   - statsmodels
   - pip
+  - geopandas 
+  - shapely 
+  - pyproj  
+  - rasterio 
+  - folium  
   - pip:
       - tensorflow
       - keras
