@@ -23,7 +23,10 @@ dependencies:
   - pyproj  
   - rasterio 
   - folium  
+  - plotly
+  - tqdm
   - pip:
       - tensorflow
       - keras
       - h5py
+      - jupyter-dash
