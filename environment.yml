@@ -25,6 +25,10 @@ dependencies:
   - folium  
   - plotly
   - tqdm
+  - cdsapi
+  - datetime
+  - scipy.spatial
+  - shutil
   - pip:
       - tensorflow
       - keras
