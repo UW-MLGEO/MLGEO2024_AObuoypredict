@@ -17,8 +17,6 @@ The IABP oeprates a network of ~100 buoys in the Arctic Ocean. To use as trainin
 ### Reanalyses
 NCEP ftp://ftp.cdc.noaa.gov/Datasets/ncep/
 
-### Forecasts
-GFS ftp://ftp.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/
 
 ## Using this repository
 The contents of this repository can be used to collect, clean, and process geospatial data for use in training ML algorithms to predict buoy motion. Please refer to the license file for information on distribution and reproduction of this work. 
@@ -68,3 +66,9 @@ Scripts shoud be used in the following order:
 4. eda.ipynb
 
    -This notebook performs some exploratory data analysis on the buoy and weather data to provide insights into trends, correlations, and potential data issues.
+
+### Data access
+Past buoy data with ERA5 interpolated: https://drive.google.com/file/d/1mTfWw_TBcZzp-s0E5r6e8PMZ03yxFgXF/view?usp=sharing
+API key file: https://drive.google.com/file/d/1o8u7ZBOuwydCDieQRjXQM6VDswB3ngR-/view?usp=drive_link
+
+The API key file should be stored in highest level of your local folder for this repo
