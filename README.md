@@ -72,3 +72,8 @@ Past buoy data with ERA5 interpolated: https://drive.google.com/file/d/1mTfWw_TB
 API key file: https://drive.google.com/file/d/1o8u7ZBOuwydCDieQRjXQM6VDswB3ngR-/view?usp=drive_link
 
 The API key file should be stored in highest level of your local folder for this repo
+
+Wind data:
+https://drive.google.com/file/d/1fzJLpbSXRI0Nn2Sq5brIHj0zCpMdTEpX/view?usp=drive_link
+
+https://drive.google.com/file/d/1Y1I-BWPc10n0EIydsoINcT7uwTwWNFZd/view?usp=drive_link
