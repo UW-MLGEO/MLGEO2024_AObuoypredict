@@ -3,7 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.9
+  - python=3.12
   - numpy
   - pandas
   - scikit-learn
@@ -26,11 +26,12 @@ dependencies:
   - plotly
   - tqdm
   - cdsapi
-  - datetime
-  - scipy.spatial
-  - shutil
   - pip:
       - tensorflow
       - keras
       - h5py
       - jupyter-dash
+      - shutil
+      - datetime
+      - pykalman
+      - scipy.spatial
