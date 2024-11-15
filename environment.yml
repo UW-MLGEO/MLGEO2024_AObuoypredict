@@ -26,12 +26,16 @@ dependencies:
   - plotly
   - tqdm
   - cdsapi
+  - ipython
+  - glob2
+  - geopy
+  - xgboost
+  - lightgbm
   - pip:
       - tensorflow
       - keras
       - h5py
       - jupyter-dash
-      - shutil
       - datetime
       - pykalman
-      - scipy.spatial
+      - scipy
