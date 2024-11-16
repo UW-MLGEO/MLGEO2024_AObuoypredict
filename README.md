@@ -68,12 +68,15 @@ Scripts shoud be used in the following order:
    -This notebook performs some exploratory data analysis on the buoy and weather data to provide insights into trends, correlations, and potential data issues.
 
 ### Data access
-Past buoy data with ERA5 interpolated: https://drive.google.com/file/d/1mTfWw_TBcZzp-s0E5r6e8PMZ03yxFgXF/view?usp=sharing
-API key file: https://drive.google.com/file/d/1o8u7ZBOuwydCDieQRjXQM6VDswB3ngR-/view?usp=drive_link
+API key file (should go in top level folder): 
+https://drive.google.com/file/d/1o8u7ZBOuwydCDieQRjXQM6VDswB3ngR-/view?usp=drive_link
 
 The API key file should be stored in highest level of your local folder for this repo
 
-Wind data:
+Wind data (these should go in data/raw/reanalyses/ERA5):
 https://drive.google.com/file/d/1fzJLpbSXRI0Nn2Sq5brIHj0zCpMdTEpX/view?usp=drive_link
 
 https://drive.google.com/file/d/1Y1I-BWPc10n0EIydsoINcT7uwTwWNFZd/view?usp=drive_link
+
+Buoy data (should go in top level folder):
+https://drive.google.com/file/d/1oHp-1rz8KltO6OpzMyp2Syq5Wy6DIhmM/view?usp=sharing
