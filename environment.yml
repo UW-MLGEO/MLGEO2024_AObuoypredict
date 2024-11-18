@@ -3,7 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.9
+  - python=3.12
   - numpy
   - pandas
   - scikit-learn
@@ -25,8 +25,17 @@ dependencies:
   - folium  
   - plotly
   - tqdm
+  - cdsapi
+  - ipython
+  - glob2
+  - geopy
+  - xgboost
+  - lightgbm
   - pip:
       - tensorflow
       - keras
       - h5py
       - jupyter-dash
+      - datetime
+      - pykalman
+      - scipy

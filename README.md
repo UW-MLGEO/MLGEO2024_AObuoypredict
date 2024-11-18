@@ -3,7 +3,7 @@ Autumn 2024 project to predict buoy positions in the Arctic Ocean
 
 **Contributors**: Ben Cohen, Rudra Singh, Jinsu Jang, Erin Davis
 
-Contact: bencohen@uw.edu, rsingh34@uw.edu, davise12@uw.edu
+Contact: bencohen@uw.edu, rsingh34@uw.edu, davise12@uw.edu, jjs9904@uw.edu
 
 ## Motivation
 The dynamics of the Arctic Ocean environment are complex and variable. [The International Arctic Buoy Programme (IABP)](https://iabp.apl.uw.edu/) is a collaborative effort to deploy and maintain a network of drifting buoys in the Arctic Ocean to collect oceanographic and meteorological data that support research for a variety of applications. While the buoys can provide real-time and historical information on their location and in-situ environment, predicting the motion of these drifting buoys is challenging. 
@@ -17,8 +17,6 @@ The IABP oeprates a network of ~100 buoys in the Arctic Ocean. To use as trainin
 ### Reanalyses
 NCEP ftp://ftp.cdc.noaa.gov/Datasets/ncep/
 
-### Forecasts
-GFS ftp://ftp.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/
 
 ## Using this repository
 The contents of this repository can be used to collect, clean, and process geospatial data for use in training ML algorithms to predict buoy motion. Please refer to the license file for information on distribution and reproduction of this work. 
@@ -68,3 +66,17 @@ Scripts shoud be used in the following order:
 4. eda.ipynb
 
    -This notebook performs some exploratory data analysis on the buoy and weather data to provide insights into trends, correlations, and potential data issues.
+
+### Data access
+API key file (should go in top level folder): 
+https://drive.google.com/file/d/1o8u7ZBOuwydCDieQRjXQM6VDswB3ngR-/view?usp=drive_link
+
+The API key file should be stored in highest level of your local folder for this repo
+
+Wind data (these should go in data/raw/reanalyses/ERA5):
+https://drive.google.com/file/d/1fzJLpbSXRI0Nn2Sq5brIHj0zCpMdTEpX/view?usp=drive_link
+
+https://drive.google.com/file/d/1Y1I-BWPc10n0EIydsoINcT7uwTwWNFZd/view?usp=drive_link
+
+Buoy data (should go in top level folder):
+https://drive.google.com/file/d/1oHp-1rz8KltO6OpzMyp2Syq5Wy6DIhmM/view?usp=sharing
