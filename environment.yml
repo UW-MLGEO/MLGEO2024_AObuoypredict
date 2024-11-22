@@ -3,6 +3,8 @@ channels:
   - defaults
   - conda-forge
 dependencies:
+  - seaborn
+  - joblib
   - python=3.12
   - numpy
   - pandas
@@ -39,3 +41,5 @@ dependencies:
       - datetime
       - pykalman
       - scipy
+      - haversine
+      - optuna
