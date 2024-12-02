@@ -33,6 +33,7 @@ dependencies:
   - geopy
   - xgboost
   - lightgbm
+  - cartopy
   - pip:
       - tensorflow
       - keras
