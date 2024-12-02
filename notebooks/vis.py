@@ -5,6 +5,7 @@ import cartopy.feature as cfeature
 import glob
 import os
 
+# Plot only the simplified version, geographic map creation is commented out
 def plot_trajectory_comparison(pred_data, model_name):
     # create_geographic_map(pred_data, model_name)
     create_simple_plot(pred_data, model_name)
@@ -63,20 +64,29 @@ def create_geographic_map(pred_data, model_name):
     plt.close()
 
 def create_simple_plot(pred_data, model_name):
-    plt.figure(figsize=(15, 10))
+    plt.figure(figsize=(15, 10)) # Create large figure for better visibility
     
-    # Plot full dataset with sampling for clarity
-    sample_size = max(1, len(pred_data) // 100)
-    data_to_plot = pred_data.iloc[::sample_size]
+     # Calculate sampling rate to reduce data points for clearer visualization
+    sample_size = max(1, len(pred_data) // 100) # Divide total points by 100 to get sampling rate
+    # Example: if data has 1000 points, sample_size = 10, so take every 10th point
+    # The max(1, ...) ensures we take at least every point if data has fewer than 100 points
+
+    # Sample the data using the calculated rate
+    data_to_plot = pred_data.iloc[::sample_size] # Use slice with step size = sample_size
     
+    # Plot sampled trajectories - blue solid line for true path
     plt.plot(data_to_plot['True Longitude'], data_to_plot['True Latitude'],
              'b-', label='True Trajectory', linewidth=2)
+    
+    # Red dashed line for predicted path
     plt.plot(data_to_plot['Predicted Longitude'], data_to_plot['Predicted Latitude'],
              'r--', label='Predicted Trajectory', linewidth=2)
     
-    # Add markers
+    # Add start point (green) using first row of original (unsampled) data
     plt.plot(pred_data['True Longitude'].iloc[0], pred_data['True Latitude'].iloc[0],
              'go', markersize=12, label='Start')
+    
+     # Add end point (red) using last row of original data
     plt.plot(pred_data['True Longitude'].iloc[-1], pred_data['True Latitude'].iloc[-1],
              'ro', markersize=12, label='End')
     
