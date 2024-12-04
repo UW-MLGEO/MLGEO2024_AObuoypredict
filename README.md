@@ -92,6 +92,41 @@ Scripts shoud be used in the following order:
 
    -This script processes buoy trajectory prediction data, generating plots that compare the true and predicted positions for randomly selected buoys. It reads CSV files, extracts relevant columns, and creates visual comparisons for up to five buoys. The plots are saved in a specified directory.
 
+## Summary and Future Improvements
+
+#### Summary
+- **Objective**: The goal was to predict drifting buoy motion for Arctic research using classic ML and deep learning models, trained on IABP drifting buoy data and ERA5 wind reanalyses.
+- **Results**:
+  - Predictions showed acceptable accuracy for short trajectories, with minimal errors.
+  - For longer buoy paths, the accuracy decreased due to cumulative errors and environmental factors, though it remained useful for planning future buoy deployments.
+  - The model's predictions were generally of poor quality for satellite imaging applications, but they form a solid foundation for future improvement.
+
+#### Key Insights
+- **Trajectory Length Impact**: 
+  - Shorter trajectories had accurate predictions.
+  - Longer trajectories showed a drop in accuracy, especially for distances with complex environmental conditions.
+- **Environmental Influences**: 
+  - Predictions were probably affected by environmental factors like sea ice concentration, ocean currents, wind speed, and temperature gradients.
+  - Seasonal changes, climate shifts, and fluctuating ocean currents also posed challenges to maintaining consistent accuracy.
+- **Data Gaps**: 
+  - The model's performance could be improved with more frequent measurements and better data processing techniques.
+  
+#### Future Directions for Improvement
+- **Model Selection**: 
+  - Test and implement additional classic ML and deep learning models for better accuracy.
+- **Data Expansion**: 
+  - Include data from other sources like IABP and ERA5 for a broader dataset.
+- **Training Duration**: 
+  - Extend training times for better model refinement.
+- **Data Source Expansion**: 
+  - Incorporate data from more buoy-deploying agencies and weather reanalyses.
+- **Physical Laws**: 
+  - Improve the PINN by incorporating more detailed physical laws to enhance model accuracy.
+- **Forecasting**: 
+  - Transition from using solely reanalyses data to including forecast data for improved prediction.
+
+
+
 ### Data access
 API key file (should go in top level folder): 
 https://drive.google.com/file/d/1o8u7ZBOuwydCDieQRjXQM6VDswB3ngR-/view?usp=drive_link
