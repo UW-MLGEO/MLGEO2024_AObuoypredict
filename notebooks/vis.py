@@ -1,113 +1,64 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
+import numpy as np
 import glob
 import os
 
-# Plot only the simplified version, geographic map creation is commented out
-def plot_trajectory_comparison(pred_data, model_name):
-    # create_geographic_map(pred_data, model_name)
-    create_simple_plot(pred_data, model_name)
-
-# decided not to use because graphs got chaotic
-def create_geographic_map(pred_data, model_name):
-    plt.figure(figsize=(20, 5))
-    ax = plt.axes(projection=ccrs.PlateCarree())
-    
-    # Add geographic features
-    ax.add_feature(cfeature.LAND, facecolor='#f0f0f0', alpha=0.3)
-    ax.add_feature(cfeature.OCEAN, facecolor='#e6f3ff', alpha=0.3)
-    ax.add_feature(cfeature.COASTLINE, linewidth=0.5)
-    gl = ax.gridlines(draw_labels=True, linestyle='--', alpha=0.3)
-    gl.top_labels = False
-    gl.right_labels = False
-    
-    # Take first 100 points
-    data_to_plot = pred_data
-    
-    # Plot trajectories
-    ax.plot(data_to_plot['True Longitude'], 
-            data_to_plot['True Latitude'],
-            'b-', label='True Trajectory', 
-            transform=ccrs.PlateCarree(),
-            linewidth=2)
-    
-    ax.plot(data_to_plot['Predicted Longitude'], 
-            data_to_plot['Predicted Latitude'],
-            'r--', label='Predicted Trajectory', 
-            transform=ccrs.PlateCarree(),
-            linewidth=2)
-    
-    # Add markers
-    ax.plot(data_to_plot['True Longitude'].iloc[0], 
-            data_to_plot['True Latitude'].iloc[0],
-            'go', markersize=12, label='Start',
-            transform=ccrs.PlateCarree())
-    
-    ax.plot(data_to_plot['True Longitude'].iloc[-1], 
-            data_to_plot['True Latitude'].iloc[-1],
-            'ro', markersize=12, label='End',
-            transform=ccrs.PlateCarree())
-    
-    # Set extent
-    ax.set_extent([-180, 180, 0, 90], crs=ccrs.PlateCarree())
-    
-    plt.legend(loc='upper right', fontsize=10)
-    plt.title(f'{model_name} - Prediction Results', pad=20, fontsize=12)
-    
-    # Save geographic map
-    output_dir = os.path.join(os.getcwd(), 'MLGEO2024_AObuoypredict', 'data', 'processed', 'prediction_plots')
-    os.makedirs(output_dir, exist_ok=True)
-    plt.savefig(os.path.join(output_dir, f'{model_name}_geographic.png'), 
-                dpi=300, bbox_inches='tight', pad_inches=0.2)
-    plt.close()
-
 def create_simple_plot(pred_data, model_name):
-    plt.figure(figsize=(15, 10)) # Create large figure for better visibility
+    plt.figure(figsize=(15, 10))
     
-     # Calculate sampling rate to reduce data points for clearer visualization
-    sample_size = max(1, len(pred_data) // 100) # Divide total points by 100 to get sampling rate
-    # Example: if data has 1000 points, sample_size = 10, so take every 10th point
-    # The max(1, ...) ensures we take at least every point if data has fewer than 100 points
-
-    # Sample the data using the calculated rate
-    data_to_plot = pred_data.iloc[::sample_size] # Use slice with step size = sample_size
+    # Randomly select 5 unique buoys
+    unique_buoys = pred_data['BuoyID'].unique()
+    selected_buoys = np.random.choice(unique_buoys, min(5, len(unique_buoys)), replace=False)
     
-    # Plot sampled trajectories - blue solid line for true path
-    plt.plot(data_to_plot['True Longitude'], data_to_plot['True Latitude'],
-             'b-', label='True Trajectory', linewidth=2)
+    # Color palette for different buoys
+    colors = ['blue', 'red', 'green', 'purple', 'orange']
     
-    # Red dashed line for predicted path
-    plt.plot(data_to_plot['Predicted Longitude'], data_to_plot['Predicted Latitude'],
-             'r--', label='Predicted Trajectory', linewidth=2)
-    
-    # Add start point (green) using first row of original (unsampled) data
-    plt.plot(pred_data['True Longitude'].iloc[0], pred_data['True Latitude'].iloc[0],
-             'go', markersize=12, label='Start')
-    
-     # Add end point (red) using last row of original data
-    plt.plot(pred_data['True Longitude'].iloc[-1], pred_data['True Latitude'].iloc[-1],
-             'ro', markersize=12, label='End')
+    # Plot each selected buoy's trajectory
+    for idx, buoy_id in enumerate(selected_buoys):
+        buoy_data = pred_data[pred_data['BuoyID'] == buoy_id]
+        
+        # Calculate sampling rate
+        sample_size = max(1, len(buoy_data) // 100)
+        data_to_plot = buoy_data.iloc[::sample_size]
+        
+        # Plot true trajectory
+        plt.plot(data_to_plot['True Longitude'], data_to_plot['True Latitude'],
+                '-', color=colors[idx], label=f'Buoy {buoy_id} - True',
+                linewidth=2)
+        
+        # Plot predicted trajectory
+        plt.plot(data_to_plot['Predicted Longitude'], data_to_plot['Predicted Latitude'],
+                '--', color=colors[idx], label=f'Buoy {buoy_id} - Predicted',
+                linewidth=2)
+        
+        # Add start and end points
+        plt.plot(buoy_data['True Longitude'].iloc[0], buoy_data['True Latitude'].iloc[0],
+                'o', color=colors[idx], markersize=12, label=f'Buoy {buoy_id} - Start')
+        plt.plot(buoy_data['True Longitude'].iloc[-1], buoy_data['True Latitude'].iloc[-1],
+                's', color=colors[idx], markersize=12, label=f'Buoy {buoy_id} - End')
     
     plt.grid(True, alpha=0.3)
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
-    plt.title(f'{model_name} - Full Trajectory Overview ({len(pred_data)} points)')
-    plt.legend()
+    plt.title(f'{model_name} - Trajectory Overview (5 Random Buoys)')
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     
-    # Save simple plot
+    # Save plot
     output_dir = os.path.join(os.getcwd(), 'MLGEO2024_AObuoypredict', 'data', 'processed', 'prediction_plots')
     os.makedirs(output_dir, exist_ok=True)
     plt.savefig(os.path.join(output_dir, f'{model_name}_simple.png'), 
                 dpi=300, bbox_inches='tight')
     plt.close()
 
+def plot_trajectory_comparison(pred_data, model_name):
+    create_simple_plot(pred_data, model_name)
+
 def process_predictions():
     prediction_dir = os.path.join(os.getcwd(), 'MLGEO2024_AObuoypredict', 'data', 'processed', 'predictions')
     print(f"Looking for predictions in: {prediction_dir}")
     
-    model_types = ['GradientBoosting', 'RandomForest', 'XGBoost', 'LightGBM', 'ElasticNet']
+    model_types = ['best_dl_model_predictions', 'CNN', 'RNN', 'FCN']
     
     for model_type in model_types:
         pattern = os.path.join(prediction_dir, f'{model_type}*.csv')
@@ -118,6 +69,9 @@ def process_predictions():
             try:
                 print(f"Processing: {pred_file}")
                 pred_data = pd.read_csv(pred_file)
+                # Process data to get only required columns
+                required_cols = ['BuoyID', 'True Latitude', 'True Longitude', 'Predicted Latitude', 'Predicted Longitude']
+                pred_data = pred_data[required_cols]
                 plot_trajectory_comparison(pred_data, model_type)
                 print(f"Successfully created plots for {model_type}")
             except Exception as e:
@@ -129,4 +83,6 @@ if __name__ == "__main__":
     os.chdir(project_root)
     print(f"Working directory: {os.getcwd()}")
     
+    # Set random seed for reproducibility
+    np.random.seed(42)
     process_predictions()
