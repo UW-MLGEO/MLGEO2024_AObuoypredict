@@ -88,6 +88,9 @@ Scripts shoud be used in the following order:
 4. eda.ipynb
 
    -This notebook performs some exploratory data analysis on the buoy and weather data to provide insights into trends, correlations, and potential data issues.
+5. vis.py
+
+   -This script processes buoy trajectory prediction data, generating plots that compare the true and predicted positions for randomly selected buoys. It reads CSV files, extracts relevant columns, and creates visual comparisons for up to five buoys. The plots are saved in a specified directory.
 
 ### Data access
 API key file (should go in top level folder): 
