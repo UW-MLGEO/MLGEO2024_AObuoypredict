@@ -10,6 +10,13 @@ The dynamics of the Arctic Ocean environment are complex and variable. [The Inte
 
 Accurate forecasts of buoy positions would be useful for a number of reasons: Imaging the features buoys are deployed on is of great interest to researchers of various disciplines. Recent developments in satellite imaging technology and the industry surrounding the practice have allowed researchers unprecedented access to high-resolution, on-demand imagery products. However, these satellite imaging frameworks necessarily operate under the restrictions inherent to orbital intstrumentation - namely the need for advance (>24hrs) determination of areas of interest for instruments to target. Without an accurate prediction of where features of interest coincident with buoy deployments will be, accurate satellite imaging regresses to guesswork. Failed captures are not only monetarily expensive, but also temporally expensive as icebergs are inherently transient, impermanent features. Furthermore, as climate change continues to affect the distribution and longevity of sea ice in the Arctic, ship traffic has increased dramatically. Forecasts of iceberg positions would provide ship operators with information that could serve to avoid collisions or other hazardous situations. Finally, predictions of buoy positions would contribute to the understanding of the force-balance dynamics that affect icebergs of various sizes and origins, especially as this project evolves and more climate metrics are added to the data ecosystem.
 
+## High-Level Overview of Machine Learning Aspect
+### ML Model Selection Methodology
+![Machine Learning Model Selection Methodology](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/ml_process_vis.png)
+
+### Hyperparameter Tuning Process
+![Tuning Process](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/tuning%20process_vis.png)
+
 ## Data used in this project
 ### Buoy data
 The IABP oeprates a network of ~100 buoys in the Arctic Ocean. To use as training data, buoys that reported in 2024 were selected and their datastreams interpolated with MERRA-2 weather reanalysis data. This project also queries the IABP API to collect real-time buoy positions for use as initial conditions for prediction.
