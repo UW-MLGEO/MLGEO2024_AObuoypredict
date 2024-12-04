@@ -21,6 +21,9 @@ Accurate forecasts of buoy positions would be useful for a number of reasons: Im
 ### Buoy data
 The IABP oeprates a network of ~100 buoys in the Arctic Ocean. To use as training data, buoys that reported in 2024 were selected and their datastreams interpolated with MERRA-2 weather reanalysis data. This project also queries the IABP API to collect real-time buoy positions for use as initial conditions for prediction.
 
+### Data Cleaning Pipeline 
+![Data Visualization](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/data_cleaning.png)
+
 ### Reanalyses
 NCEP ftp://ftp.cdc.noaa.gov/Datasets/ncep/
 
