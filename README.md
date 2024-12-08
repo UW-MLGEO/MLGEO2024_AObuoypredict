@@ -24,20 +24,20 @@ The Arctic Ocean's dynamic environment presents unique challenges. The [Internat
 
 ## High-Level Overview of Machine Learning Aspect
 **ML Model Selection Methodology**
-![Machine Learning Model Selection Methodology](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/ml_process_vis.png)
+![Machine Learning Model Selection Methodology](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/visualizations/ml_process_vis.png)
 
 **Hyperparameter Tuning Process**
-![Tuning Process](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/tuning%20process_vis.png)
+![Tuning Process](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/visualizations/tuning%20process_vis.png)
 
 ## Data used in this project
 ### Buoy data
-The IABP oeprates a network of ~100 buoys in the Arctic Ocean. To use as training data, buoys that reported in 2024 were selected and their datastreams interpolated with MERRA-2 weather reanalysis data. This project also queries the IABP API to collect real-time buoy positions for use as initial conditions for prediction.
+This project used the complete set of drifting buoy data collected and provided by the IABP.
 
 **Data Cleaning Pipeline**
-![Data Visualization](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/data_cleaning.png)
+![Data Visualization](https://github.com/UW-MLGEO/MLGEO2024_AObuoypredict/blob/main/visualizations/data_cleaning.png)
 
 ### Reanalyses
-NCEP ftp://ftp.cdc.noaa.gov/Datasets/ncep/
+This project used the ERA5 surface winds reanalysis products as environmental forcing variables.
 
 
 ## Using this repository
@@ -66,11 +66,11 @@ conda activate mlggeo2024_aobuoypredict
 
 Your environment is now ready and activated!
 
-### Collecting and manipulating project data
+### Notebook/script information
 Scripts shoud be used in the following order:
 1. download_data.ipynb
 
-   -This notebook handles downloading data of various types for this project, including: past buoy data, weather reanalyses, weather forecasts, and current buoy positions.
+   -This notebook handles downloading data of various types for this project.
 
    -Data will be stored in the data/raw folder.
 2. data_cleaning.ipynb
@@ -83,27 +83,42 @@ Scripts shoud be used in the following order:
 3. prepare_ai_ready_data.ipynb
 
    -This notebook manipulates the buoy and weather data for use in model training and prediction.
-
-   -The weather reanalyses are converted into numpy/pandas arrays and encoded with the proper values for day of year, etc.
 4. eda.ipynb
 
    -This notebook performs some exploratory data analysis on the buoy and weather data to provide insights into trends, correlations, and potential data issues.
-5. vis.py
+5. modeltraining_hyperparameter.ipynb
+
+  -This notebook implements a five-fold cross-validation model selection pipeline for classic machine learning architectures. 
+
+  -Once the best model is selected, its hyperparameters are tuned using Optuna.
+
+  -Once the best hyperparameters for the best performing model are selected, the tuned model is trained on the entire dataset with 5 buoys withheld for validation and evaluation of accuracy.
+6. deep_learning.ipynb
+
+  -This notebook implements a five-fold cross-validation model selection pipeline for deep learning architectures.
+
+  -Due to computational contraints, hyperparameter tuning was not implemented in this context.
+
+  -Once the best deep learning model is selected, the model is trainined on the entire dataset with 5 buoys withheld for validation and evaluation of accuracy.
+7. vis.py
 
    -This script processes buoy trajectory prediction data, generating plots that compare the true and predicted positions for randomly selected buoys. It reads CSV files, extracts relevant columns, and creates visual comparisons for up to five buoys. The plots are saved in a specified directory.
+8. prepare_ppt.ipynb
+  
+  -This notebook is/was used to prepare certain visualizations for use in presentations, summary documents, etc.
 
 ## Summary and Future Improvements
 
 #### Summary
 - **Objective**: The goal was to predict drifting buoy motion for Arctic research using classic ML and deep learning models, trained on IABP drifting buoy data and ERA5 wind reanalyses.
 - **Results**:
-  - Predictions showed acceptable accuracy for short trajectories, with minimal errors.
-  - For longer buoy paths, the accuracy decreased due to cumulative errors and environmental factors, though it remained useful for planning future buoy deployments.
+  - Predictions showed acceptable accuracy for short trajectories.
+  - For longer buoy paths, the accuracy decreased due to cumulative errors and environmental factors. Error propagation was a major issue.
   - The model's predictions were generally of poor quality for satellite imaging applications, but they form a solid foundation for future improvement.
 
 #### Key Insights
 - **Trajectory Length Impact**: 
-  - Shorter trajectories had accurate predictions.
+  - Shorter trajectories had more accurate predictions.
   - Longer trajectories showed a drop in accuracy, especially for distances with complex environmental conditions.
 - **Environmental Influences**: 
   - Predictions were probably affected by environmental factors like sea ice concentration, ocean currents, wind speed, and temperature gradients.
@@ -123,20 +138,4 @@ Scripts shoud be used in the following order:
 - **Physical Laws**: 
   - Improve the PINN by incorporating more detailed physical laws to enhance model accuracy.
 - **Forecasting**: 
-  - Transition from using solely reanalyses data to including forecast data for improved prediction.
-
-
-
-### Data access
-API key file (should go in top level folder): 
-https://drive.google.com/file/d/1o8u7ZBOuwydCDieQRjXQM6VDswB3ngR-/view?usp=drive_link
-
-The API key file should be stored in highest level of your local folder for this repo
-
-Wind data (these should go in data/raw/reanalyses/ERA5):
-https://drive.google.com/file/d/1fzJLpbSXRI0Nn2Sq5brIHj0zCpMdTEpX/view?usp=drive_link
-
-https://drive.google.com/file/d/1Y1I-BWPc10n0EIydsoINcT7uwTwWNFZd/view?usp=drive_link
-
-Buoy data (should go in top level folder):
-https://drive.google.com/file/d/1oHp-1rz8KltO6OpzMyp2Syq5Wy6DIhmM/view?usp=sharing
+  - Transition from using solely reanalysis data to including forecast data for improved prediction.
